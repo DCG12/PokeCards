@@ -1,8 +1,10 @@
 package com.example.user.worldmeal;
 
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -73,7 +75,26 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void refresh() {
+        RefreshDataTask task = new RefreshDataTask();
+        task.execute();
     }
 
+    private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Meals>> {
+        @Override
+        protected ArrayList<Meals> doInBackground(Void... voids) {
+            APIMeals api = new APIMeals();
+            ArrayList<Meals> result = api.getMeal();
 
+            Log.d("DEBUG", result.toString());
+
+            return result;
+        }
+        @Override
+        protected void onPostExecute(ArrayList<Meals> meals) {
+            adapter.clear();
+            for (Meals meal : meals) {
+                adapter.add(meal.getNombre());
+            }
+        }
+    }
 }
