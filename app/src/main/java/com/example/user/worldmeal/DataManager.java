@@ -15,4 +15,7 @@ public class DataManager {
         static void saveMovies(ArrayList<Meals> movies, Context context) {
             cupboard().withContext(context).put(MEAL_URI, Meals.class, movies);
         }
+        static void deleteMovies(Context context) {
+            cupboard().withContext(context).delete(MEAL_URI, "_id > ?", "1");
+    }
 }

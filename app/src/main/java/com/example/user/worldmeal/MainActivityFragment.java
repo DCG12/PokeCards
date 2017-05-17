@@ -122,6 +122,7 @@ public class MainActivityFragment extends Fragment {
             }
 */
             Log.d("DEBUG", result != null ? result.toString() : null);
+            DataManager.deleteMovies(getContext());
             DataManager.saveMovies(result, getContext());
 
             return null;
