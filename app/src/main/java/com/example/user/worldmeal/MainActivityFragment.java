@@ -1,5 +1,6 @@
 package com.example.user.worldmeal;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  */
 public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private ArrayList<Meals> items;
+    private ProgressDialog dialog;
     private MealsCursorAdapter adapter;
 
     public MainActivityFragment() {
@@ -47,8 +48,11 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                              Bundle savedInstanceState) {
         FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         View view = binding.getRoot();
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("Cargando...");
 
         adapter = new MealsCursorAdapter(getContext(), Meals.class);
+
 
         binding.lvMeals.setAdapter(adapter);
 
@@ -114,6 +118,11 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.show();
+        }
+        @Override
         protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -136,6 +145,12 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             DataManager.saveMeals(result, getContext());
 
             return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            dialog.dismiss();
         }
 
     }
