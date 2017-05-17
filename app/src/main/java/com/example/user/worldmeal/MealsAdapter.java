@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class MealsAdapter extends ArrayAdapter<Meals> {
 
         tvNombre.setText(meal.getNombre());
         tvCategoria.setText( meal.getCategoria());
+        Glide.with(getContext()).load(meal.getImagen()).into(ivImage);
 
         return convertView;
     }
