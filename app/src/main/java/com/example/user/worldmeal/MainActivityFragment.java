@@ -122,9 +122,7 @@ public class MainActivityFragment extends Fragment {
             }
 */
             Log.d("DEBUG", result != null ? result.toString() : null);
-            UriHelper helper = UriHelper.with(ContentProvider.AUTHORITY);
-            Uri mealsUri = helper.getUri(Meals.class);
-            cupboard().withContext(getContext()).put(mealsUri, Meals.class, result);
+            DataManager.saveMovies(result, getContext());
 
             return null;
         }
