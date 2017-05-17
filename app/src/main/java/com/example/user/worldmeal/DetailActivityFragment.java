@@ -45,7 +45,7 @@ public class DetailActivityFragment extends Fragment {
 
     private void updateUi(Meals meal) {
         Log.d("MEALS", meal.toString());
-        
+
         binding.tvNombre.setText(meal.getNombre());
         binding.tvCategory.setText(Html.fromHtml("<b>Categoria:</b> " + meal.getCategoria()));
         binding.tvArea.setText(Html.fromHtml("<b>Nacionalidad:</b> " + meal.getArea()));
