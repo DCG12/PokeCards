@@ -60,15 +60,21 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Meals meal = (Meals) adapterView.getItemAtPosition(i);
+                if (!esTablet()) {
                 Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("meal", meal);
                 startActivity(intent);
+                }
             }
         });
 
         getLoaderManager().initLoader(0, null, this);
 
         return view;
+    }
+
+    boolean esTablet() {
+        return getResources().getBoolean(R.bool.tablet);
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
