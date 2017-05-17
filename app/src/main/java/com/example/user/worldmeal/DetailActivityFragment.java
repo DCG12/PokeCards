@@ -11,17 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.databinding.DataBindingUtil;
+
+import com.example.user.worldmeal.databinding.FragmentDetailBinding;
 
 import com.bumptech.glide.Glide;
 
 public class DetailActivityFragment extends Fragment {
 
-    private View view;
-    private ImageView ivImage;
-    private TextView tvNombre;
-    private TextView tvCategory;
-    private TextView tvArea;
-    private TextView tvInstrucciones;
+    private FragmentDetailBinding binding;
 
     public DetailActivityFragment() {
     }
@@ -29,7 +27,8 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_detail, container, false);
+        binding = DataBindingUtil.inflate(inflater ,R.layout.fragment_detail, container, false);
+        View view = binding.getRoot();
 
         Intent i = getActivity().getIntent();
 
@@ -46,18 +45,12 @@ public class DetailActivityFragment extends Fragment {
 
     private void updateUi(Meals meal) {
         Log.d("MEALS", meal.toString());
-
-        ivImage = (ImageView) view.findViewById(R.id.ivImage);
-        tvNombre = (TextView) view.findViewById(R.id.tvNombre);
-        tvCategory = (TextView) view.findViewById(R.id.tvCategory);
-        tvArea = (TextView) view.findViewById(R.id.tvArea);
-        tvInstrucciones = (TextView) view.findViewById(R.id.tvInstrucciones);
-
-        tvNombre.setText(meal.getNombre());
-        tvCategory.setText(Html.fromHtml("<b>Categoria:</b> " + meal.getCategoria()));
-        tvArea.setText(Html.fromHtml("<b>Nacionalidad:</b> " + meal.getArea()));
-        tvInstrucciones.setText(Html.fromHtml("<b>Instrucciones:</b>" + meal.getInstrucciones()));
-        Glide.with(getContext()).load(meal.getImagen()).into(ivImage);
+        
+        binding.tvNombre.setText(meal.getNombre());
+        binding.tvCategory.setText(Html.fromHtml("<b>Categoria:</b> " + meal.getCategoria()));
+        binding.tvArea.setText(Html.fromHtml("<b>Nacionalidad:</b> " + meal.getArea()));
+        binding.tvInstrucciones.setText(Html.fromHtml("<b>Instrucciones:</b>" + meal.getInstrucciones()));
+        Glide.with(getContext()).load(meal.getImagen()).into(binding.ivImage);
     }
 
 }

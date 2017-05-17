@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.databinding.DataBindingUtil;
+
+import com.example.user.worldmeal.databinding.FragmentMainBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,10 +45,8 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-
-        ListView lvMeals = (ListView) view.findViewById(R.id.lvMeals);
-
+        FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        View view = binding.getRoot();
 
         items = new ArrayList<>();
         adapter = new MealsAdapter(
@@ -53,9 +54,9 @@ public class MainActivityFragment extends Fragment {
                 R.layout.lv_meals_row,
                 items
         );
-        lvMeals.setAdapter(adapter);
+        binding.lvMeals.setAdapter(adapter);
 
-        lvMeals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.lvMeals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Meals meal = (Meals) adapterView.getItemAtPosition(i);
@@ -67,7 +68,6 @@ public class MainActivityFragment extends Fragment {
 
         return view;
     }
-
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
