@@ -18,8 +18,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 
 import com.example.user.worldmeal.databinding.FragmentMainBinding;
+
+import nl.littlerobots.cupboard.tools.provider.UriHelper;
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,9 +102,9 @@ public class MainActivityFragment extends Fragment {
         task.execute();
     }
 
-    private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Meals>> {
+    private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
-        protected ArrayList<Meals> doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
@@ -108,8 +112,7 @@ public class MainActivityFragment extends Fragment {
             String area = preferences.getString("strArea", "Indian");
             String tipoConsulta = preferences.getString("strCategory", "strArea");
 
-            APIMeals api = new APIMeals();
-            ArrayList<Meals> result = api.getTypeMeal(categoria);
+            ArrayList<Meals> result = APIMeals.getTypeMeal(categoria);
 /*
             if(tipoConsulta.equals("strCategory")) {
                 result = api.getTypeMeal(category);
@@ -119,15 +122,12 @@ public class MainActivityFragment extends Fragment {
             }
 */
             Log.d("DEBUG", result != null ? result.toString() : null);
+            UriHelper helper = UriHelper.with(ContentProvider.AUTHORITY);
+            Uri mealsUri = helper.getUri(Meals.class);
+            cupboard().withContext(getContext()).put(mealsUri, Meals.class, result);
 
-            return result;
+            return null;
         }
-        @Override
-        protected void onPostExecute(ArrayList<Meals> meals) {
-            adapter.clear();
-            for (Meals meal : meals) {
-                adapter.add(meal);
-            }
-        }
+
     }
 }

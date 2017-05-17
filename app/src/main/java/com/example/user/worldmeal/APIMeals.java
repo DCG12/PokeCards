@@ -17,7 +17,7 @@ public class APIMeals {
         private static String NAME_URL = "http://www.themealdb.com/api/json/v1/1/search.php?s";
         private static String ID_URL = "http://www.themealdb.com/api/json/v1/1/search.php?s";
 
-        ArrayList<Meals> getMeal() {
+        static ArrayList<Meals> getMeal() {
         Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
                 .build();
@@ -26,7 +26,7 @@ public class APIMeals {
         return doCall(NAME_URL);
     }
 
-        ArrayList<Meals> getTypeMeal (String categoria){
+       static ArrayList<Meals> getTypeMeal (String categoria){
         Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
                 .appendQueryParameter("strCategory", categoria)
@@ -37,7 +37,7 @@ public class APIMeals {
         return doCall(NAME_URL);
     }
 
-        ArrayList<Meals> getNationalMeal (String area){
+       static ArrayList<Meals> getNationalMeal (String area){
         Uri builtUri = Uri.parse(ID_URL)
                 .buildUpon()
                 .appendQueryParameter("strArea", area)
@@ -49,7 +49,7 @@ public class APIMeals {
 
 
         @Nullable
-        private ArrayList<Meals> doCall (String url){
+        private static ArrayList<Meals> doCall (String url){
         try {
             String JsonResponse = HttpUtils.get(url);
             ArrayList<Meals> meals = new ArrayList<>();

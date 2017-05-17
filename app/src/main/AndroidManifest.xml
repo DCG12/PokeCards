@@ -32,6 +32,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.worldmeal.MainActivity" />
         </activity>
+        <provider
+            android:name=".ContentProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false" />
     </application>
 
 </manifest>
