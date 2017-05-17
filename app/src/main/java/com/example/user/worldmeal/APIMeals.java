@@ -13,43 +13,43 @@ import java.util.ArrayList;
 
 public class APIMeals {
 
-    private static String B_URL = "http://www.themealdb.com/api/json/v1/1/randomselection.php";
 
-    ArrayList<Meals> getMeal() {
-        Uri builtUri = Uri.parse(B_URL)
+        private static String NAME_URL = "http://www.themealdb.com/api/json/v1/1/search.php?s";
+        private static String ID_URL = "http://www.themealdb.com/api/json/v1/1/search.php?s";
+
+        ArrayList<Meals> getMeal() {
+        Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
                 .build();
         String url = builtUri.toString();
 
-        return doCall(B_URL);
+        return doCall(NAME_URL);
     }
 
-    ArrayList<Meals> getTypeMeal() {
-        Uri builtUri = Uri.parse(B_URL)
+        ArrayList<Meals> getTypeMeal (String categoria){
+        Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
-                .appendPath("strMeal")
-                .appendPath("strCategory")
+                .appendQueryParameter("strCategory", categoria)
                 .build();
         String url = builtUri.toString();
 
 
-        return doCall(B_URL);
+        return doCall(NAME_URL);
     }
 
-    ArrayList<Meals> getNationalMeal() {
-        Uri builtUri = Uri.parse(B_URL)
+        ArrayList<Meals> getNationalMeal (String area){
+        Uri builtUri = Uri.parse(ID_URL)
                 .buildUpon()
-                .appendPath("strMeal")
-                .appendPath("strArea")
+                .appendQueryParameter("strArea", area)
                 .build();
         String url = builtUri.toString();
 
-        return doCall(B_URL);
+        return doCall(ID_URL);
     }
 
 
-    @Nullable
-    private ArrayList<Meals> doCall(String url) {
+        @Nullable
+        private ArrayList<Meals> doCall (String url){
         try {
             String JsonResponse = HttpUtils.get(url);
             ArrayList<Meals> meals = new ArrayList<>();
@@ -57,11 +57,21 @@ public class APIMeals {
             JSONObject data = new JSONObject(JsonResponse);
             JSONArray jsonCartas = data.getJSONArray("meals");
 
-            for (int i = 0; i <jsonCartas.length() ; i++) {
+            for (int i = 0; i < jsonCartas.length(); i++) {
                 Meals meal = new Meals();
                 JSONObject object = jsonCartas.getJSONObject(i);
-                meal.setNombre(object.getString("strMeal"));
-                meal.setCategoria(object.getString("strCategory"));
+                if (object.has("strMeal")) {
+                    meal.setNombre(object.getString("strMeal"));
+                }
+                if (object.has("strCategory")) {
+                    meal.setCategoria(object.getString("strCategory"));
+                }
+                if (object.has("strArea")) {
+                    meal.setArea(object.getString("strArea"));
+                }
+                if (object.has("strMealThumb")) {
+                    meal.setImagen(object.getString("strMealThumb"));
+                }
                 meals.add(meal);
             }
 
@@ -73,4 +83,5 @@ public class APIMeals {
         }
         return null;
     }
+
 }

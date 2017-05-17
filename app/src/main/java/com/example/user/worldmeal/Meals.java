@@ -6,7 +6,7 @@ public class Meals {
 
     private String nombre;
     private String categoria;
-    private String procedencia;
+    private String area;
     private String instrucciones;
     private String imagen;
 
@@ -26,12 +26,12 @@ public class Meals {
         this.categoria = categoria;
     }
 
-    public String getProcedencia() {
-        return procedencia;
+    public String getArea() {
+        return area;
     }
 
-    public void setProcedencia(String procedencia) {
-        this.procedencia = procedencia;
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getInstrucciones() {
@@ -55,7 +55,7 @@ public class Meals {
         return "Meals{" +
                 "nombre='" + nombre + '\'' +
                 ", categoria='" + categoria + '\'' +
-                ", procedencia='" + procedencia + '\'' +
+                ", area='" + area + '\'' +
                 ", instrucciones='" + instrucciones + '\'' +
                 ", imagen='" + imagen + '\'' +
                 '}';

@@ -1,6 +1,8 @@
 package com.example.user.worldmeal;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -22,8 +24,8 @@ import java.util.Arrays;
  */
 public class MainActivityFragment extends Fragment {
 
-    private ArrayList<String> items;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Meals> items;
+    private ArrayAdapter<Meals> adapter;
 
     public MainActivityFragment() {
     }
@@ -73,7 +75,13 @@ public class MainActivityFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
-
+/*
+    @Override
+    public void onStart() {
+        super.onStart();
+        refresh();
+    }
+*/
     private void refresh() {
         RefreshDataTask task = new RefreshDataTask();
         task.execute();
@@ -82,10 +90,24 @@ public class MainActivityFragment extends Fragment {
     private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Meals>> {
         @Override
         protected ArrayList<Meals> doInBackground(Void... voids) {
-            APIMeals api = new APIMeals();
-            ArrayList<Meals> result = api.getMeal();
 
-            Log.d("DEBUG", result.toString());
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+            String categoria = preferences.getString("strCategory", "Vegetarian");
+            String area = preferences.getString("strArea", "Indian");
+            String tipoConsulta = preferences.getString("strCategory", "strArea");
+
+            APIMeals api = new APIMeals();
+            ArrayList<Meals> result = api.getTypeMeal(categoria);
+/*
+            if(tipoConsulta.equals("strCategory")) {
+                result = api.getTypeMeal(category);
+            }
+            else{
+                result = api.getNationalMeal(area);
+            }
+*/
+            Log.d("DEBUG", result != null ? result.toString() : null);
 
             return result;
         }
@@ -93,7 +115,7 @@ public class MainActivityFragment extends Fragment {
         protected void onPostExecute(ArrayList<Meals> meals) {
             adapter.clear();
             for (Meals meal : meals) {
-                adapter.add(meal.getNombre());
+                adapter.add(meal);
             }
         }
     }
