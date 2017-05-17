@@ -1,8 +1,8 @@
 package com.example.user.worldmeal;
 
+import java.io.Serializable;
 
-
-public class Meals {
+public class Meals implements Serializable{
 
     private String nombre;
     private String categoria;

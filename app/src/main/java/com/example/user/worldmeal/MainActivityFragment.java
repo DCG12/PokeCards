@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class MainActivityFragment extends Fragment {
 
     private ArrayList<Meals> items;
-    private ArrayAdapter<Meals> adapter;
+    private MealsAdapter adapter;
 
     public MainActivityFragment() {
     }
@@ -46,10 +46,9 @@ public class MainActivityFragment extends Fragment {
 
 
         items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(
+        adapter = new MealsAdapter(
                 getContext(),
                 R.layout.lv_meals_row,
-                R.id.tvMeal,
                 items
         );
         lvMeals.setAdapter(adapter);
