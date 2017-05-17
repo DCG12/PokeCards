@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,9 +11,9 @@
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginStart="124dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:maxHeight="160dp"
@@ -24,14 +25,13 @@
         android:id="@+id/tvNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
         android:text=""
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/ivImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ivImage" />
 
     <TextView
         android:id="@+id/tvCategory"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text=""
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="@+id/tvNombre"
         app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text=""
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="@+id/tvCategory"
         app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
@@ -58,10 +58,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textSize="12sp"
         android:text=" "
-        app:layout_constraintLeft_toLeftOf="@+id/tvArea"
-        app:layout_constraintRight_toRightOf="@+id/tvArea"
         app:layout_constraintTop_toBottomOf="@+id/tvArea" />
 
 
 </android.support.constraint.ConstraintLayout>
+    </layout>

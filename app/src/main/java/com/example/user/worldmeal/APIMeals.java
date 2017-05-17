@@ -69,6 +69,9 @@ public class APIMeals {
                 if (object.has("strArea")) {
                     meal.setArea(object.getString("strArea"));
                 }
+                if (object.has("strInstructions")) {
+                    meal.setInstrucciones(object.getString("strInstructions"));
+                }
                 if (object.has("strMealThumb")) {
                     meal.setImagen(object.getString("strMealThumb"));
                 }

@@ -4,12 +4,15 @@ package com.example.user.worldmeal;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 public class DetailActivityFragment extends Fragment {
 
@@ -49,6 +52,12 @@ public class DetailActivityFragment extends Fragment {
         tvCategory = (TextView) view.findViewById(R.id.tvCategory);
         tvArea = (TextView) view.findViewById(R.id.tvArea);
         tvInstrucciones = (TextView) view.findViewById(R.id.tvInstrucciones);
+
+        tvNombre.setText(meal.getNombre());
+        tvCategory.setText(Html.fromHtml("<b>Categoria:</b> " + meal.getCategoria()));
+        tvArea.setText(Html.fromHtml("<b>Nacionalidad:</b> " + meal.getArea()));
+        tvInstrucciones.setText(Html.fromHtml("<b>Instrucciones:</b>" + meal.getInstrucciones()));
+        Glide.with(getContext()).load(meal.getImagen()).into(ivImage);
     }
 
 }
