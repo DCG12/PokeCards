@@ -61,6 +61,7 @@ public class MainActivityFragment extends Fragment {
                 Meals meal = (Meals) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("meal", meal);
+                startActivity(intent);
             }
         });
 
