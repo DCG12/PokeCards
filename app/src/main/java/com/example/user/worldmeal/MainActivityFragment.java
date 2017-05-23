@@ -2,16 +2,13 @@ package com.example.user.worldmeal;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.os.AsyncTask;
-import android.preference.PreferenceManager;
+import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,16 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.databinding.DataBindingUtil;
-import com.alexvasilkov.events.Events;
 
+import com.alexvasilkov.events.Events;
 import com.example.user.worldmeal.databinding.FragmentMainBinding;
 
-import java.util.ArrayList;
-
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private ProgressDialog dialog;
@@ -118,7 +109,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         RefreshDataTask task = new RefreshDataTask(getActivity().getApplicationContext());
         task.execute();
     }
-
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {

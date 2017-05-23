@@ -1,16 +1,14 @@
 package com.example.user.worldmeal;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import com.bumptech.glide.Glide;
-import android.databinding.DataBindingUtil;
 
+import com.bumptech.glide.Glide;
 import com.example.user.worldmeal.databinding.LvMealsRowBinding;
 
 import java.util.List;
