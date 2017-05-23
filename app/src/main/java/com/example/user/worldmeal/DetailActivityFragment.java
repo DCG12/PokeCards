@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.databinding.DataBindingUtil;
+import com.alexvasilkov.events.Events;
 
 import com.example.user.worldmeal.databinding.FragmentDetailBinding;
 
@@ -23,6 +24,14 @@ public class DetailActivityFragment extends Fragment {
 
     public DetailActivityFragment() {
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Events.register(this);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +50,11 @@ public class DetailActivityFragment extends Fragment {
         }
 
         return view;
+    }
+
+    @Events.Subscribe("meal-selected")
+    private void onMovieSelected(Meals meal) {
+        updateUi(meal);
     }
 
     private void updateUi(Meals meal) {

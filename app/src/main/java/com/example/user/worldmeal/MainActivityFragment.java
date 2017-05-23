@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.databinding.DataBindingUtil;
+import com.alexvasilkov.events.Events;
 
 import com.example.user.worldmeal.databinding.FragmentMainBinding;
 
@@ -64,6 +65,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                 Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("meal", meal);
                 startActivity(intent);
+                }else {
+                    Events.create("meal-selected").param(meal).post();
                 }
             }
         });
@@ -71,6 +74,16 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         getLoaderManager().initLoader(0, null, this);
 
         return view;
+    }
+
+    @Events.Subscribe("start-downloading-data")
+    void preRefresh() {
+        dialog.show();
+    }
+
+    @Events.Subscribe("finish-downloading-data")
+    void afterRefresh() {
+        dialog.dismiss();
     }
 
     boolean esTablet() {
@@ -94,15 +107,15 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
         return super.onOptionsItemSelected(item);
     }
-/*
+
     @Override
     public void onStart() {
         super.onStart();
-        refresh();
+        Events.register(this);
     }
-*/
+
     private void refresh() {
-        RefreshDataTask task = new RefreshDataTask();
+        RefreshDataTask task = new RefreshDataTask(getActivity().getApplicationContext());
         task.execute();
     }
 
@@ -122,42 +135,4 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         adapter.swapCursor(null);
     }
 
-    private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog.show();
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-            String categoria = preferences.getString("strCategory", "Vegetarian");
-            String area = preferences.getString("strArea", "Indian");
-            String tipoConsulta = preferences.getString("strCategory", "strArea");
-
-            ArrayList<Meals> result = APIMeals.getTypeMeal(categoria);
-/*
-            if(tipoConsulta.equals("strCategory")) {
-                result = api.getTypeMeal(category);
-            }
-            else{
-                result = api.getNationalMeal(area);
-            }
-*/
-            Log.d("DEBUG", result != null ? result.toString() : null);
-            DataManager.deleteMeals(getContext());
-            DataManager.saveMeals(result, getContext());
-
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            dialog.dismiss();
-        }
-
-    }
 }
