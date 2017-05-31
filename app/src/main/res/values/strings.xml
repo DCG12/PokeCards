@@ -18,19 +18,13 @@
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
-        <item>Indian</item>
-        <item>Japanese</item>
-        <item>African</item>
-        <item>Irish</item>
-        <item>British</item>
+        <item>strCategory</item>
+        <item>strArea</item>
 
     </string-array>
     <string-array name="pref_example_list_values">
-        <item>Indian</item>
-        <item>Japanese</item>
-        <item>African</item>
-        <item>Irish</item>
-        <item>British</item>
+        <item>strCategory</item>
+        <item>strArea</item>
 
     </string-array>
 

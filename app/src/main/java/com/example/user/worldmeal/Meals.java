@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Meals implements Serializable{
 
     private String nombre;
-    private String categoria;
+    private String strCategory;
     private String area;
     private String instrucciones;
     private String imagen;
@@ -18,12 +18,12 @@ public class Meals implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getStrCategory() {
+        return strCategory;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setStrCategory(String strCategory) {
+        this.strCategory = strCategory;
     }
 
     public String getArea() {
@@ -54,7 +54,7 @@ public class Meals implements Serializable{
     public String toString() {
         return "Meals{" +
                 "nombre='" + nombre + '\'' +
-                ", categoria='" + categoria + '\'' +
+                ", strCategory='" + strCategory + '\'' +
                 ", area='" + area + '\'' +
                 ", instrucciones='" + instrucciones + '\'' +
                 ", imagen='" + imagen + '\'' +

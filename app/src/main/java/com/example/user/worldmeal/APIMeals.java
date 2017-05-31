@@ -64,7 +64,7 @@ public class APIMeals {
                     meal.setNombre(object.getString("strMeal"));
                 }
                 if (object.has("strCategory")) {
-                    meal.setCategoria(object.getString("strCategory"));
+                    meal.setStrCategory(object.getString("strCategory"));
                 }
                 if (object.has("strArea")) {
                     meal.setArea(object.getString("strArea"));

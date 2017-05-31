@@ -10,10 +10,10 @@
     tools:showIn="@layout/activity_main">
 
     <ListView
-        android:layout_width="384dp"
-        android:layout_height="455dp"
+        android:layout_width="376dp"
+        android:layout_height="515dp"
         android:id="@+id/lvMeals"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"

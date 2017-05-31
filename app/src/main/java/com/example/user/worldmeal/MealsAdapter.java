@@ -34,7 +34,7 @@ public class MealsAdapter extends ArrayAdapter<Meals> {
         }
 
         binding.tvMeal.setText(meal.getNombre());
-        binding.tvCategory.setText( meal.getCategoria());
+        binding.tvCategory.setText( meal.getStrCategory());
         Glide.with(getContext()).load(meal.getImagen()).into(binding.ivImage);
 
         return binding.getRoot();

@@ -33,13 +33,13 @@ protected void onPreExecute() {
         String area = preferences.getString("strArea", "Indian");
         String tipoConsulta = preferences.getString("strCategory", "strArea");
 
-        ArrayList<Meals> result = APIMeals.getTypeMeal(categoria);
+        ArrayList<Meals> result = APIMeals.getMeal();
 /*
             if(tipoConsulta.equals("strCategory")) {
-                result = api.getTypeMeal(category);
+                result = APIMeals.getTypeMeal(categoria);
             }
             else{
-                result = api.getNationalMeal(area);
+                result = APIMeals.getNationalMeal(area);
             }
 */
         Log.d("DEBUG", result != null ? result.toString() : null);

@@ -1,8 +1,10 @@
 package com.example.user.worldmeal;
 
  import android.content.Context;
-import android.net.Uri;
-import android.support.v4.content.CursorLoader;
+ import android.content.SharedPreferences;
+ import android.net.Uri;
+ import android.preference.PreferenceManager;
+ import android.support.v4.content.CursorLoader;
 
 import java.util.ArrayList;
 
@@ -15,14 +17,14 @@ public class DataManager {
         private static UriHelper URI_HELPER = UriHelper.with(ContentProvider.AUTHORITY);
         private static Uri MEAL_URI = URI_HELPER.getUri(Meals.class);
 
-        static void saveMeals(ArrayList<Meals> movies, Context context) {
-            cupboard().withContext(context).put(MEAL_URI, Meals.class, movies);
+        static void saveMeals(ArrayList<Meals> meals, Context context) {
+            cupboard().withContext(context).put(MEAL_URI, Meals.class, meals);
         }
         static void deleteMeals(Context context) {
             cupboard().withContext(context).delete(MEAL_URI, "_id > ?", "0");
          }
         static CursorLoader getCursorLoader(Context context) {
-        return new CursorLoader(context, MEAL_URI, null, null, null, null);
+            return new CursorLoader(context, MEAL_URI, null, null, null, null);
         }
 
 }
