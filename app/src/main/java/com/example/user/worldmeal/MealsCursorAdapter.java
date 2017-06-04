@@ -29,7 +29,7 @@ public class MealsCursorAdapter extends CupboardCursorAdapter<Meals> {
     public void bindView(View view, Context context, Meals model) {
         LvMealsRowBinding binding = DataBindingUtil.getBinding(view);
         binding.tvMeal.setText(model.getNombre());
-        binding.tvCategory.setText(model.getStrCategory());
+        binding.tvCategory.setText(model.getTipo());
         Glide.with(context).load(model.getImagen()).into(binding.ivImage);
     }
 }

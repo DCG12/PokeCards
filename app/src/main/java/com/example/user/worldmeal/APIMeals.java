@@ -10,12 +10,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class APIMeals {
 
-
-        private static String NAME_URL = "http://www.themealdb.com/api/json/v1/1/search.php?s";
-        private static String ID_URL = "http://www.themealdb.com/api/json/v1/1/search.php?s";
+        private static String NAME_URL = "https://api.pokemontcg.io/v1/cards";
 
         static ArrayList<Meals> getMeal() {
         Uri builtUri = Uri.parse(NAME_URL)
@@ -38,15 +35,14 @@ public class APIMeals {
     }
 
        static ArrayList<Meals> getNationalMeal (String area){
-        Uri builtUri = Uri.parse(ID_URL)
+        Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
                 .appendQueryParameter("strArea", area)
                 .build();
         String url = builtUri.toString();
 
-        return doCall(ID_URL);
+        return doCall(NAME_URL);
     }
-
 
         @Nullable
         private static ArrayList<Meals> doCall (String url){
@@ -55,25 +51,37 @@ public class APIMeals {
             ArrayList<Meals> meals = new ArrayList<>();
 
             JSONObject data = new JSONObject(JsonResponse);
-            JSONArray jsonCartas = data.getJSONArray("meals");
+            JSONArray jsonCartas = data.getJSONArray("cards");
 
             for (int i = 0; i < jsonCartas.length(); i++) {
                 Meals meal = new Meals();
                 JSONObject object = jsonCartas.getJSONObject(i);
-                if (object.has("strMeal")) {
-                    meal.setNombre(object.getString("strMeal"));
+                if (object.has("name")) {
+                    meal.setNombre(object.getString("name"));
                 }
-                if (object.has("strCategory")) {
-                    meal.setStrCategory(object.getString("strCategory"));
+                if (object.has("types")) {
+                    meal.setTipo(object.getString("types"));
                 }
-                if (object.has("strArea")) {
-                    meal.setArea(object.getString("strArea"));
+                if (object.has("hp")) {
+                    meal.setVida(object.getString("hp"));
                 }
-                if (object.has("strInstructions")) {
-                    meal.setInstrucciones(object.getString("strInstructions"));
+                if (object.has("subtype")) {
+                    meal.setEstado(object.getString("subtype"));
                 }
-                if (object.has("strMealThumb")) {
-                    meal.setImagen(object.getString("strMealThumb"));
+                if (object.has("supertype")) {
+                    meal.setClase(object.getString("supertype"));
+                }
+                if (object.has("ability")) {
+                    meal.setHabilidad(object.getString("ability"));
+                }
+                if (object.has("artist")) {
+                    meal.setArtista(object.getString("artist"));
+                }
+                if (object.has("rarity")) {
+                    meal.setSerie(object.getString("rarity"));
+                }
+                if (object.has("imageUrl")) {
+                    meal.setImagen(object.getString("imageUrl"));
                 }
                 meals.add(meal);
             }

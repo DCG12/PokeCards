@@ -58,9 +58,9 @@ public class DetailActivityFragment extends Fragment {
         Log.d("MEALS", meal.toString());
 
         binding.tvNombre.setText(meal.getNombre());
-        binding.tvCategory.setText(Html.fromHtml("<b>Categoria:</b> " + meal.getStrCategory()));
-        binding.tvArea.setText(Html.fromHtml("<b>Nacionalidad:</b> " + meal.getArea()));
-        binding.tvInstrucciones.setText(Html.fromHtml("<b>Instrucciones:</b>" + meal.getInstrucciones()));
+        binding.tvCategory.setText(Html.fromHtml("<b>Tipo:</b> " + meal.getTipo()));
+        binding.tvArea.setText(Html.fromHtml("<b>Hp:</b> " + meal.getVida()));
+        binding.tvInstrucciones.setText(Html.fromHtml("<b>Clase:</b>" + meal.getClase()));
         Glide.with(getContext()).load(meal.getImagen()).into(binding.ivImage);
     }
 

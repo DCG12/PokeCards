@@ -5,9 +5,13 @@ import java.io.Serializable;
 public class Meals implements Serializable{
 
     private String nombre;
-    private String strCategory;
-    private String area;
-    private String instrucciones;
+    private String tipo;
+    private String vida;
+    private String estado;
+    private String clase;
+    private String habilidad;
+    private String artista;
+    private String serie;
     private String imagen;
 
     public String getNombre() {
@@ -18,28 +22,60 @@ public class Meals implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getStrCategory() {
-        return strCategory;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setStrCategory(String strCategory) {
-        this.strCategory = strCategory;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getArea() {
-        return area;
+    public String getVida() {
+        return vida;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setVida(String vida) {
+        this.vida = vida;
     }
 
-    public String getInstrucciones() {
-        return instrucciones;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setInstrucciones(String instrucciones) {
-        this.instrucciones = instrucciones;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
+    public String getHabilidad() {
+        return habilidad;
+    }
+
+    public void setHabilidad(String habilidad) {
+        this.habilidad = habilidad;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
     }
 
     public String getImagen() {
@@ -54,9 +90,13 @@ public class Meals implements Serializable{
     public String toString() {
         return "Meals{" +
                 "nombre='" + nombre + '\'' +
-                ", strCategory='" + strCategory + '\'' +
-                ", area='" + area + '\'' +
-                ", instrucciones='" + instrucciones + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", vida='" + vida + '\'' +
+                ", estado='" + estado + '\'' +
+                ", clase='" + clase + '\'' +
+                ", habilidad='" + habilidad + '\'' +
+                ", artista='" + artista + '\'' +
+                ", serie='" + serie + '\'' +
                 ", imagen='" + imagen + '\'' +
                 '}';
     }
