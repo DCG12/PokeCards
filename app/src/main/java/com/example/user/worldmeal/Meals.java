@@ -9,7 +9,6 @@ public class Meals implements Serializable{
     private String vida;
     private String estado;
     private String clase;
-    private String habilidad;
     private String artista;
     private String serie;
     private String imagen;
@@ -62,14 +61,6 @@ public class Meals implements Serializable{
         this.artista = artista;
     }
 
-    public String getHabilidad() {
-        return habilidad;
-    }
-
-    public void setHabilidad(String habilidad) {
-        this.habilidad = habilidad;
-    }
-
     public String getSerie() {
         return serie;
     }
@@ -94,7 +85,6 @@ public class Meals implements Serializable{
                 ", vida='" + vida + '\'' +
                 ", estado='" + estado + '\'' +
                 ", clase='" + clase + '\'' +
-                ", habilidad='" + habilidad + '\'' +
                 ", artista='" + artista + '\'' +
                 ", serie='" + serie + '\'' +
                 ", imagen='" + imagen + '\'' +

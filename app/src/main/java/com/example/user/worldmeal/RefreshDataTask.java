@@ -29,19 +29,19 @@ protected void onPreExecute() {
     protected Void doInBackground(Void... voids) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String categoria = preferences.getString("strCategory", "Vegetarian");
-        String area = preferences.getString("strArea", "Indian");
-        String tipoConsulta = preferences.getString("strCategory", "strArea");
+        String types = preferences.getString("types", "Grass");
+        String rareza = preferences.getString("rarity", "Rare");
+        String tipoConsulta = preferences.getString("tipus_consulta", "tipos");
 
-        ArrayList<Meals> result = APIMeals.getMeal();
-/*
-            if(tipoConsulta.equals("strCategory")) {
-                result = APIMeals.getTypeMeal(categoria);
+        ArrayList<Meals> result;
+
+            if(tipoConsulta.equals("tipos")) {
+                result = APIMeals.getTypeMeal(types);
             }
             else{
-                result = APIMeals.getNationalMeal(area);
+                result = APIMeals.getRarezaMeal(rareza);
             }
-*/
+
         Log.d("DEBUG", result != null ? result.toString() : null);
         DataManager.deleteMeals(context);
         DataManager.saveMeals(result, context);

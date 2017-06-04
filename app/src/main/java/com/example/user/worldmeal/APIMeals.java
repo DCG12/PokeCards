@@ -14,6 +14,7 @@ public class APIMeals {
 
         private static String NAME_URL = "https://api.pokemontcg.io/v1/cards";
 
+    /*
         static ArrayList<Meals> getMeal() {
         Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
@@ -21,12 +22,12 @@ public class APIMeals {
         String url = builtUri.toString();
 
         return doCall(NAME_URL);
-    }
+    }*/
 
-       static ArrayList<Meals> getTypeMeal (String categoria){
+       static ArrayList<Meals> getTypeMeal (String types){
         Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
-                .appendQueryParameter("strCategory", categoria)
+                .appendQueryParameter("types", types)
                 .build();
         String url = builtUri.toString();
 
@@ -34,10 +35,10 @@ public class APIMeals {
         return doCall(NAME_URL);
     }
 
-       static ArrayList<Meals> getNationalMeal (String area){
+       static ArrayList<Meals> getRarezaMeal (String rareza){
         Uri builtUri = Uri.parse(NAME_URL)
                 .buildUpon()
-                .appendQueryParameter("strArea", area)
+                .appendQueryParameter("rarity", rareza)
                 .build();
         String url = builtUri.toString();
 
@@ -70,9 +71,6 @@ public class APIMeals {
                 }
                 if (object.has("supertype")) {
                     meal.setClase(object.getString("supertype"));
-                }
-                if (object.has("ability")) {
-                    meal.setHabilidad(object.getString("ability"));
                 }
                 if (object.has("artist")) {
                     meal.setArtista(object.getString("artist"));
